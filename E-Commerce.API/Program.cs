@@ -16,7 +16,7 @@ namespace E_Commerce.API
 {
     public class Program
     {
-        public static async void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             #region DI Container
 

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Domain.Contracts;
 using Domain.Entities.BasketModule;
+using Domain.Exceptions;
 using ServiceAbstraction.Contracts;
 using Shared.DTOs.BasketModule;
 using System;
@@ -15,7 +16,7 @@ namespace Services.Services
     {
         public async Task<BasketDto> CreateOrUpdateBasketAsync(BasketDto basketDto)
         {
-            var basket = _mapper.Map<CustomerBasket>(basketDto);
+            var basket = _mapper.Map<BasketDto, CustomerBasket>(basketDto);
             var createdOrUpdatedBasket=await _basketRepository.CreateOrUpdateBasketAsync(basket);
             return createdOrUpdatedBasket is null ? throw new Exception("Can not create or update the basket")
                 :_mapper.Map<BasketDto>(createdOrUpdatedBasket);
